@@ -1,0 +1,53 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(255, 207, 149);
+  width: 100vw;
+  height: 100vh;
+}
+
+body header {
+  align-self: flex-start;
+  justify-self: flex-start;
+}
+
+.h-25 {
+  height: 25%;
+}
+
+.h-75 {
+  height: 75%;
+}
+
+.border {
+  border: 2px solid rgb(222, 139, 255);
+}
+
+.d-flex {
+  display: flex;
+}
+
+.dir-col {
+  flex-direction: column;
+}
+
+.center {
+  justify-content: center;
+  align-items: center;
+}
+
+.aifs {
+  align-items: flex-start;
+}
+
+.m-2 {
+  margin: 2rem;
+}
+
+.p-2 {
+  padding: 2rem;
+}
