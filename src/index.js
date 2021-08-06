@@ -37,6 +37,19 @@ function sendScore(arg) {
   });
 }
 
+async function showScore(arg) {
+  const gettingScrores = fetch(arg, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  const see = await gettingScrores;
+  const temp2 = see.json();
+  const see2 = await temp2;
+  console.log(see2.result);
+}
+
 async function giveScoreUrl() {
   const temp = await grabId();
   const urlToScores = `https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/${temp}/scores/`;
