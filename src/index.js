@@ -3,7 +3,7 @@ import './style.css';
 const baseUrl = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/';
 
 // todo: ===========================================> create game
-async function postGame() {
+const postGame = async () => {
   const temp = await fetch(baseUrl, {
     method: 'POST',
     headers: {
@@ -14,26 +14,26 @@ async function postGame() {
     }),
   });
   return temp.json();
-}
+};
 
-async function separateGameId(arg) {
+const separateGameId = async (arg) => {
   const temp = arg.result.split(' ')[3];
   return temp;
-}
+};
 
-async function whenStart() {
+const whenStart = async () => {
   const gameCreated = await postGame();
   const seperatedIdPromise = separateGameId(gameCreated);
   return seperatedIdPromise;
-}
+};
 
 const gameIdPromise = whenStart();
 
-async function getScore() {
+const getScore = async () => {
   const currentId = await gameIdPromise;
   const temp = await fetch(`${baseUrl}${currentId}/scores/`);
   return temp.json();
-}
+};
 // todo: ===========================================> get score
 
 const refBtn = document.getElementById('refreshBtn');
@@ -46,13 +46,13 @@ function makeDomElement(name, score) {
   document.getElementById('scoreList').appendChild(createLi);
 }
 
-async function iterateList(list) {
+const iterateList = async (list) => {
   const temp = await list;
   document.getElementById('scoreList').innerHTML = '';
   temp.result.forEach((ele) => {
     makeDomElement(ele.user, ele.score);
   });
-}
+};
 
 refBtn.addEventListener('click', async (e) => {
   e.preventDefault();
@@ -62,7 +62,7 @@ refBtn.addEventListener('click', async (e) => {
 
 // todo: ===========================================> add to score
 
-async function sendScore(userName, userScore) {
+const sendScore = async (userName, userScore) => {
   const currentId = await gameIdPromise;
   const temp = await fetch(`${baseUrl}${currentId}/scores/`, {
     method: 'POST',
@@ -75,15 +75,15 @@ async function sendScore(userName, userScore) {
     }),
   });
   return temp;
-}
+};
 
-function submitFunction() {
+const submitFunction = () => {
   const getYourName = document.getElementById('userName').value;
   const getYourScore = document.getElementById('userScore').value;
   sendScore(getYourName, getYourScore);
   document.getElementById('userName').value = '';
   document.getElementById('userScore').value = '';
-}
+};
 
 document.querySelector('#submitBtn').addEventListener('click', async (e) => {
   e.preventDefault();
