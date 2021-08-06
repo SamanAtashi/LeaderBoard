@@ -34,3 +34,29 @@ async function getScore() {
   const temp = await fetch(`${baseUrl}${currentId}/scores/`);
   return temp.json();
 }
+// todo: ===========================================> get score
+
+const refBtn = document.getElementById('refreshBtn');
+
+function makeDomElement(name, score) {
+  const createLi = document.createElement('li');
+  const createP = document.createElement('p');
+  createP.innerHTML = `${name}:${score}`;
+  createLi.appendChild(createP);
+  document.getElementById('scoreList').appendChild(createLi);
+}
+
+async function iterateList(list) {
+  const temp = await list;
+  document.getElementById('scoreList').innerHTML = '';
+  temp.result.forEach((ele) => {
+    makeDomElement(ele.user, ele.score);
+  });
+}
+
+refBtn.addEventListener('click', async (e) => {
+  e.preventDefault();
+  const listPromise = getScore();
+  iterateList(listPromise);
+});
+
