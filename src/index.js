@@ -41,7 +41,7 @@ const refBtn = document.getElementById('refreshBtn');
 function makeDomElement(name, score) {
   const createLi = document.createElement('li');
   const createP = document.createElement('p');
-  createP.innerHTML = `${name}:${score}`;
+  createP.innerHTML = `${name} --> ${score}`;
   createLi.appendChild(createP);
   document.getElementById('scoreList').appendChild(createLi);
 }
